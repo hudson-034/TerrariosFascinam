@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using TerrariosFascinam.Model;
 
-namespace TerrariosFascinam.Services
+namespace TerrariosFascinam.Business
 {
-    public interface IClientService
+    public interface IClientBusiness
     {
         Client Create(Client client);
         Client FindById(long id);

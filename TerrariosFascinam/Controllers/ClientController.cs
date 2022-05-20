@@ -1,33 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TerrariosFascinam.Model;
-using TerrariosFascinam.Services;
+using TerrariosFascinam.Business;
 
 namespace TerrariosFascinam.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> _logger;
-        private IClientService _clientService;
+        private IClientBusiness _clientBusiness;
 
-        public ClientController(ILogger<ClientController> logger, IClientService clientService)
+        public ClientController(ILogger<ClientController> logger, IClientBusiness clientBusiness)
         {
             _logger = logger;
-            _clientService = clientService;
+            _clientBusiness = clientBusiness;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_clientService.FindAll());
+            return Ok(_clientBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var client = _clientService.FindById(id);
+            var client = _clientBusiness.FindById(id);
             if (client == null) return NotFound();
             return Ok(client);
         }
@@ -36,20 +37,20 @@ namespace TerrariosFascinam.Controllers
         public IActionResult Post([FromBody] Client client)
         {
             if (client == null) return BadRequest();
-            return Ok(_clientService.Create(client));
+            return Ok(_clientBusiness.Create(client));
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] Client client)
         {
             if (client == null) return BadRequest();
-            return Ok(_clientService.Update(client));
+            return Ok(_clientBusiness.Update(client));
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _clientService.Delete(id);
+            _clientBusiness.Delete(id);
             return NoContent();
         }
     }

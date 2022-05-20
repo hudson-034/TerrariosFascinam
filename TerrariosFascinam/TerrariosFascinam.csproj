@@ -5,10 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Script\" />
+    <Compile Remove="Model\Script\**" />
+    <Content Remove="Model\Script\**" />
+    <EmbeddedResource Remove="Model\Script\**" />
+    <None Remove="Model\Script\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
   </ItemGroup>
 

@@ -5,8 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TerrariosFascinam.Model.Context;
-using TerrariosFascinam.Services;
-using TerrariosFascinam.Services.Implamentations;
+using TerrariosFascinam.Business;
+using TerrariosFascinam.Business.Implamentations;
+using TerrariosFascinam.Repository;
+using TerrariosFascinam.Repository.Implamentations;
 
 namespace TerrariosFascinam
 {
@@ -29,8 +31,12 @@ namespace TerrariosFascinam
             //services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 
+            //Versioning API
+            services.AddApiVersioning();
+            
             //Depency Injection
-            services.AddScoped<IClientService, ClientServiceImplementation>();
+            services.AddScoped<IClientBusiness, ClientBusinessImplementation>();
+            services.AddScoped<IClientRepository, ClientRepositoryImplementation>();
         }
 
         //This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

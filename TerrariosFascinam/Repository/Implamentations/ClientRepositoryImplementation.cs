@@ -4,14 +4,14 @@ using System.Linq;
 using TerrariosFascinam.Model;
 using TerrariosFascinam.Model.Context;
 
-namespace TerrariosFascinam.Services.Implamentations
+namespace TerrariosFascinam.Repository.Implamentations
 {
-    public class ClientServiceImplementation : IClientService
+    public class ClientRepositoryImplementation : IClientRepository
     {
         private MySQLContext _context;
 
         //Class Constructor
-        public ClientServiceImplementation(MySQLContext context)
+        public ClientRepositoryImplementation(MySQLContext context)
         {
             _context = context;
         }
@@ -77,7 +77,7 @@ namespace TerrariosFascinam.Services.Implamentations
             return client;
         }
 
-        private bool Exists(long id)
+        public bool Exists(long id)
         {
             return _context.Clients.Any(c => c.Id.Equals(id));
         }
