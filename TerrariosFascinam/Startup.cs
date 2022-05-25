@@ -53,6 +53,8 @@ namespace TerrariosFascinam
             //Depency Injection
             services.AddScoped<IClientBusiness, ClientBusinessImplementation>();
             services.AddScoped<IClientRepository, ClientRepositoryImplementation>();
+            services.AddScoped<IInvestmentBusiness, InvestmentBusinessImplementation>();
+            services.AddScoped<IInvestmentRepository, InvestmentRepositoryImplementation>();
         }
 
         //This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

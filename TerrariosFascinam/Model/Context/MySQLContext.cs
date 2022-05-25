@@ -13,5 +13,6 @@ namespace TerrariosFascinam.Model.Context
 
         }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Investment> Investments { get; set; }
     }
 }
