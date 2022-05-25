@@ -59,7 +59,7 @@ namespace TerrariosFascinam.Repository.Implamentations
 
         public Client Update(Client client)
         {
-            if (!Exists(client.Id)) return new Client();
+            if (!Exists(client.Id)) return null;
 
             var result = _context.Clients.SingleOrDefault(c => c.Id.Equals(client.Id));
             if (result != null)
